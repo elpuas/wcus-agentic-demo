@@ -9,6 +9,8 @@
 ## Implementation Standards
 
 - Use modern WordPress block APIs and `block.json` metadata.
+- Implement front-end interaction with the WordPress Interactivity API. Do not use ad-hoc DOM event listeners or an unrelated JavaScript framework.
+- Register interactive modules through `viewScriptModule` and use `data-wp-*` directives, stores, state, and context according to current WordPress guidance.
 - Keep editable source files in `src/` and generated assets in `build/`.
 - Prefer `@wordpress/scripts` for the JavaScript build and quality checks.
 - Follow WordPress coding standards and use translatable user-facing strings.
@@ -34,6 +36,7 @@
 
 - The plugin activates without PHP errors.
 - The block can be inserted, edited, saved, published, and reloaded without block-validation errors.
+- Testimonial navigation works through the Interactivity API with accessible previous and next controls and useful status announcements.
 - The editor and front end follow the supplied Figma design at desktop and mobile widths.
 - Keyboard interaction, heading structure, contrast, and visible focus states are accessible.
 - Build and lint commands pass.

@@ -2,7 +2,7 @@
 
 This intentionally minimal repository supports the live task shown in the WCUS 2026 session **Agentic Development: Building with AI Workers, Not Just AI Chat**.
 
-The demonstration begins with project instructions and official WordPress Agent Skills, but without an implemented plugin. A short task prompt and a Figma frame provide the desired outcome. Codex must discover the relevant workflow, build the WordPress plugin and testimonial block, run it in WordPress Playground, and validate the result in a real browser.
+The demonstration begins with project instructions and official WordPress Agent Skills, but without an implemented plugin. A short task prompt and a Figma frame provide the desired outcome. Codex must discover the relevant workflow, build the WordPress plugin and interactive testimonial block with the WordPress Interactivity API, run it in WordPress Playground, and validate the result in a real browser.
 
 ## The three pillars
 
