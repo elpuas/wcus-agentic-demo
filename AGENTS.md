@@ -2,16 +2,27 @@
 
 ## Purpose
 
-- This repository contains one standalone WordPress plugin.
-- Keep the repository root installable as the plugin directory.
+- This repository is the workspace for one standalone WordPress plugin named `testimonial-carousel`.
+- Create the plugin in `testimonial-carousel/`; keep the repository-level instructions and Skills outside the generated plugin.
 - Follow the official WordPress Agent Skills included in `.agents/skills/`.
+
+## Required Scaffold
+
+- Start the implementation with the official WordPress scaffold. Do not hand-write an alternative plugin skeleton:
+
+  ```bash
+  npx @wordpress/create-block@latest testimonial-carousel --template @wordpress/create-block-interactive-template
+  ```
+
+- Preserve the scaffold's WordPress tooling and adapt the generated example into the supplied testimonial design.
+- The finished testimonial must remain a dynamic block rendered by `render.php`.
 
 ## Implementation Standards
 
 - Use modern WordPress block APIs and `block.json` metadata.
 - Implement front-end interaction with the WordPress Interactivity API. Do not use ad-hoc DOM event listeners or an unrelated JavaScript framework.
 - Register interactive modules through `viewScriptModule` and use `data-wp-*` directives, stores, state, and context according to current WordPress guidance.
-- Keep editable source files in `src/` and generated assets in `build/`.
+- Keep editable source files in `testimonial-carousel/src/` and generated assets in `testimonial-carousel/build/`.
 - Prefer `@wordpress/scripts` for the JavaScript build and quality checks.
 - Follow WordPress coding standards and use translatable user-facing strings.
 - Produce semantic, accessible, responsive markup.
@@ -27,7 +38,7 @@
 ## Validation Workflow
 
 - Install dependencies and run the available build and lint commands.
-- Start the plugin locally from the repository root with `npx @wp-playground/cli@latest start`.
+- Start the local environment from `testimonial-carousel/` with `npx @wp-playground/cli@latest start`.
 - Use Playwright to verify the complete user flow: activate the plugin, insert and edit the block, publish the page, reload it, and inspect the front end.
 - Use Chrome DevTools MCP to inspect console errors, failed network requests, rendered styles, and responsive behavior.
 - Fix issues discovered during validation before reporting completion.
