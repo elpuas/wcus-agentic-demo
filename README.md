@@ -15,14 +15,14 @@ The demonstration begins with project instructions and official WordPress Agent 
 The task creates the plugin in `testimonial-carousel/` using the official scaffold:
 
 ```bash
-npx @wordpress/create-block@latest testimonial-carousel --template @wordpress/create-block-interactive-template
+npx @wordpress/create-block@4.96.0 testimonial-carousel --template @wordpress/create-block-interactive-template@2.53.0
 ```
 
 The completed plugin runs from its directory:
 
 ```bash
 cd testimonial-carousel
-npx @wp-playground/cli@latest start
+npx @wp-playground/cli@3.1.49 start --wp=7.0.3 --php=8.3
 ```
 
 The Playground CLI detects and mounts a plugin automatically when started from its directory.
