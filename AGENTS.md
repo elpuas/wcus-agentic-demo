@@ -53,25 +53,41 @@
   npx @wp-playground/cli@3.1.49 start --wp=7.0.3 --php=8.3
   ```
 
-## Validation Workflow
+## Execution Mode
 
-- Run the production build and the scaffold's available lint commands.
-- Start the pinned local Playground environment defined above.
-- Use Playwright as the primary validation tool. Verify activation, block insertion, editing, publishing, editor reload, desktop layout, mobile navigation, keyboard operation, and browser console errors.
+- Use Fast Mode by default.
+- Upgrade to Full Acceptance Mode only when explicitly requested, when preparing a release, or when Fast Mode exposes a problem that needs deeper validation.
+- Fix issues discovered in either mode before reporting completion.
+
+### Fast Mode
+
+- Inspect the supplied Figma frame once with `get_design_context`.
+- Run the production build, JavaScript lint, CSS lint, and PHP syntax checks available in the scaffold.
+- Start the pinned local Playground environment defined above and verify plugin activation.
+- Create the test page programmatically when possible; editor UI navigation is not required in Fast Mode.
+- Use Playwright as the primary browser validation tool:
+  - Validate one desktop viewport above `900px` and one mobile viewport at or below `900px`.
+  - Test one pointer navigation action and one keyboard navigation action on mobile.
+  - Check for browser console errors caused by the plugin.
+  - Capture exactly one final desktop screenshot and one final mobile screenshot, only after all fixes.
 - Keep browser inspection targeted and token-efficient:
-  - Take a browser snapshot only when element references are needed or after a meaningful page-state change.
-  - Reuse valid element references; do not repeat full-page snapshots when the relevant state has not changed.
-  - Inspect the testimonial block and specific failing elements rather than repeatedly capturing the entire page.
-  - Capture exactly one final desktop screenshot and one final mobile screenshot as visual evidence.
-  - Do not collect traces, repeated screenshots, complete DOM output, or full network logs unless a failure requires them.
-- Use Chrome DevTools MCP only when Playwright reveals a console, network, performance, or layout problem that requires diagnosis.
-- When Chrome DevTools is needed, inspect only the failing console messages, requests, styles, or layout properties; do not repeat checks that already passed in Playwright.
-- Fix issues discovered during validation before reporting completion.
+  - Take a snapshot only when element references are needed or after a meaningful page-state change.
+  - Reuse valid element references and inspect only the testimonial block or a specific failing element.
+  - Skip intermediate screenshots, editor reload testing, traces, complete DOM output, and full network logs unless a failure requires them.
+- Use Chrome DevTools MCP only when Playwright reveals a console, network, performance, or layout problem. Inspect only the failing data and do not repeat checks that already passed.
+
+### Full Acceptance Mode
+
+- Perform all Fast Mode checks.
+- Verify the complete editor workflow: insert the block, edit its content, publish the page, reload the editor, and confirm there are no block-validation errors.
+- Perform expanded accessibility and responsive checks across relevant states and viewports.
+- Use Chrome DevTools MCP for unresolved console, network, performance, or layout problems.
+- Retain additional browser artifacts only when they document a failure or are explicitly requested.
 
 ## Definition of Done
 
 - The plugin activates without PHP errors.
-- The block can be inserted, edited, saved, published, and reloaded without block-validation errors.
+- The block renders correctly on a published test page. Complete editor insert/edit/save/reload verification is required only in Full Acceptance Mode.
 - Testimonial navigation works through the Interactivity API with accessible previous and next controls and useful status announcements.
 - The editor and front end follow the supplied Figma design at desktop and mobile widths.
 - Keyboard interaction, heading structure, contrast, and visible focus states are accessible.
