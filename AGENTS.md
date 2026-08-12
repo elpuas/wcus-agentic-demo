@@ -58,7 +58,14 @@
 - Run the production build and the scaffold's available lint commands.
 - Start the pinned local Playground environment defined above.
 - Use Playwright as the primary validation tool. Verify activation, block insertion, editing, publishing, editor reload, desktop layout, mobile navigation, keyboard operation, and browser console errors.
+- Keep browser inspection targeted and token-efficient:
+  - Take a browser snapshot only when element references are needed or after a meaningful page-state change.
+  - Reuse valid element references; do not repeat full-page snapshots when the relevant state has not changed.
+  - Inspect the testimonial block and specific failing elements rather than repeatedly capturing the entire page.
+  - Capture exactly one final desktop screenshot and one final mobile screenshot as visual evidence.
+  - Do not collect traces, repeated screenshots, complete DOM output, or full network logs unless a failure requires them.
 - Use Chrome DevTools MCP only when Playwright reveals a console, network, performance, or layout problem that requires diagnosis.
+- When Chrome DevTools is needed, inspect only the failing console messages, requests, styles, or layout properties; do not repeat checks that already passed in Playwright.
 - Fix issues discovered during validation before reporting completion.
 
 ## Definition of Done
