@@ -17,6 +17,7 @@
 - Keep the block dynamic and render it with `render.php`.
 - Use `block.json`, `@wordpress/scripts`, translatable strings, and WordPress coding standards.
 - Use the WordPress Interactivity API for all front-end interaction; do not add manual DOM listeners or another framework.
+- Make content editable.
 - Keep source in `testimonial-carousel/src/` and generated files in `testimonial-carousel/build/`.
 - Produce semantic, accessible markup with visible keyboard focus.
 - Do not modify `.agents/skills/`.
