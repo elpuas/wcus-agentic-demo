@@ -1,0 +1,19 @@
+.editor-styles-wrapper .wp-block-create-block-testimonial-carousel.testimonial-carousel {
+	width: auto;
+	margin-right: 0;
+	margin-left: 0;
+
+	.testimonial-carousel__cards {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.testimonial-carousel__card {
+		display: flex;
+	}
+
+	[contenteditable="true"]:focus {
+		outline: 2px solid #8ec5ff;
+		outline-offset: 3px;
+	}
+}
